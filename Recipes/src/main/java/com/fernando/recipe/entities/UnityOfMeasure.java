@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Table(name = "tb_uom")
 public class UnityOfMeasure implements Serializable {
 
-    private static final long serialVersionUID = 3783093145423408126L;
+    private static final long serialVersionUID = 3783093145423426L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

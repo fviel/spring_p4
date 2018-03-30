@@ -19,10 +19,10 @@ import javax.persistence.Table;
  * @author fviel
  */
 @Entity
-@Table(name = "tb_notes"/*, schema = "recipe"*/)
+@Table(name = "tb_notes")
 public class Notes  implements Serializable {
 
-    private static final long serialVersionUID = 3783093145423408126L;
+    private static final long serialVersionUID = 37830943408126L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

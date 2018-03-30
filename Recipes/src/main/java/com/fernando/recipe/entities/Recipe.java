@@ -5,14 +5,22 @@
  */
 package com.fernando.recipe.entities;
 
+import com.fernando.recipe.enums.Difficulty;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,21 +29,21 @@ import javax.persistence.Table;
  * @author Fernando
  */
 @Entity
-@Table(name = "tb_recipe"/*, schema = "recipe"*/)
+@Table(name = "tb_recipe")
 public class Recipe implements Serializable {
 
-    private static final long serialVersionUID = 3783093145423408126L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_recipe")
-    private Integer idRecipe;
+    private static final long serialVersionUID = 3793145423408126L;
 
     /*@Id
 	@SequenceGenerator(name = "RECIPE_ID_SEQ", sequenceName = "tb_recipe_id_seq", schema = "recipe", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RECIPE_ID_SEQ")
 	@Column(name = "id_recipe")
 	private Integer idRecipe;*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_recipe")
+    private Integer idRecipe;
+
     @Column(name = "prep_time")
     private Integer prepTime;
 
@@ -54,10 +62,21 @@ public class Recipe implements Serializable {
     @Column(name = "directions")
     private String directions;
 
-    @Column(name = "image")
+    @Lob
     private Byte[] image;
-
+    
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private List<Ingredient> ingredients;
+    
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Notes notes;
+    
     //-------------------------------------
+
     public Integer getIdRecipe() {
         return idRecipe;
     }
@@ -122,13 +141,37 @@ public class Recipe implements Serializable {
         this.image = image;
     }
 
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Notes getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Notes notes) {
+        this.notes = notes;
+    }
+
     public Recipe() {
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.idRecipe);
+        hash = 97 * hash + Objects.hashCode(this.idRecipe);
         return hash;
     }
 
@@ -150,4 +193,8 @@ public class Recipe implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Recipe{" + "idRecipe=" + idRecipe + ", prepTime=" + prepTime + ", cookTime=" + cookTime + ", servings=" + servings + ", source=" + source + ", url=" + url + ", directions=" + directions + ", image=" + image + ", difficulty=" + difficulty + ", ingredients=" + ingredients + ", notes=" + notes + '}';
+    }
 }

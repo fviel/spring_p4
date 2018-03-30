@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import com.fernando.recipe.entities.UnityOfMeasure;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -24,7 +26,7 @@ import com.fernando.recipe.entities.UnityOfMeasure;
 @Table(name = "tb_ingredient")
 public class Ingredient implements Serializable {
 
-    private static final long serialVersionUID = 3783093145423408126L;
+    private static final long serialVersionUID = 3593145423408126L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +41,10 @@ public class Ingredient implements Serializable {
     
     @OneToOne
     private UnityOfMeasure uom;
+    
+    @ManyToOne
+    @JoinColumn(name = "fk_recipe")
+    private Recipe recipe;
 
     public int getIdIngredient() {
         return idIngredient;

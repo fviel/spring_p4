@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 
 public enum Difficulty {
+    EASY, MEDIUM, HARD;
 
     
 }
