@@ -6,11 +6,13 @@
 package com.fernando.recipe.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,59 +26,59 @@ public class Category implements Serializable {
 
     private static final long serialVersionUID = 359314542340812L;
 
-	@Id	
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_category")
-	private int idCategory;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_category")
+    private int idCategory;
 
-	@Column(name="department_name")
-	private String departmentName;
+    @Column(name = "department_name")
+    private String departmentName;
 
-	public int getIdCategory() {
-		return idCategory;
-	}
+    @ManyToMany(mappedBy = "categories")
+    private List<Recipe> recipes;
 
-	public void setIdCategory(int idCategory) {
-		this.idCategory = idCategory;
-	}
+    public int getIdCategory() {
+        return idCategory;
+    }
 
-	public String getDepartmentName() {
-		return departmentName;
-	}
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
+    }
 
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
-	}
+    public String getDepartmentName() {
+        return departmentName;
+    }
 
-	public Category() {
-	}
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 5;
-		hash = 79 * hash + this.idCategory;
-		return hash;
-	}
+    public Category() {
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if(this == obj) {
-			return true;
-		}
-		if(obj == null) {
-			return false;
-		}
-		if(getClass() != obj.getClass()) {
-			return false;
-		}
-		final Category other = (Category) obj;
-		if(this.idCategory != other.idCategory) {
-			return false;
-		}
-		return true;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + this.idCategory;
+        return hash;
+    }
 
-
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Category other = (Category) obj;
+        if (this.idCategory != other.idCategory) {
+            return false;
+        }
+        return true;
+    }
 
 }
