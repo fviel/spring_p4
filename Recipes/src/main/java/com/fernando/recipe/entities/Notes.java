@@ -32,4 +32,57 @@ public class Notes  implements Serializable {
     @Column(name = "notes")
     private String notes;
 
+    public int getIdNotes() {
+        return idNotes;
+    }
+
+    public void setIdNotes(int idNotes) {
+        this.idNotes = idNotes;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public Notes(int idNotes, String notes) {
+        this.idNotes = idNotes;
+        this.notes = notes;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + this.idNotes;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Notes other = (Notes) obj;
+        if (this.idNotes != other.idNotes) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Notes{" + "idNotes=" + idNotes + ", notes=" + notes + '}';
+    }
+    
+    
+
 }
