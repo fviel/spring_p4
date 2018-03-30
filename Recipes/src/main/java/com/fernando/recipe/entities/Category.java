@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author Fernando
  */
 @Entity
-@Table(name = "tb_category", schema = "recipe")
+@Table(name = "tb_category"/*, schema = "recipe"*/)
 //@Inheritance(strategy = InheritanceType.JOINED)
 public class Category {
 
