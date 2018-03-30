@@ -5,6 +5,7 @@
  */
 package com.fernando.recipe.entities;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,12 +19,13 @@ import javax.persistence.Table;
  * @author fviel
  */
 @Entity
-@Table(name = "tb_notes", schema = "recipe")
-public class Notes {
+@Table(name = "tb_notes"/*, schema = "recipe"*/)
+public class Notes  implements Serializable {
+
+    private static final long serialVersionUID = 3783093145423408126L;
 
     @Id
-    @SequenceGenerator(name = "NOTES_ID_SEQ", sequenceName = "tb_notes_id_seq", schema = "recipe", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NOTES_ID_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_notes")
     private int idNotes;
 
