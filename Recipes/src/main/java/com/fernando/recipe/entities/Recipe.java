@@ -7,6 +7,7 @@ package com.fernando.recipe.entities;
 
 import com.fernando.recipe.enums.Difficulty;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -16,6 +17,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,8 +27,13 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -48,23 +55,39 @@ public class Recipe implements Serializable {
     @Column(name = "id_recipe")
     private Integer idRecipe;
 
+    @NotNull
     @Column(name = "prep_time")
     private Integer prepTime;
 
+    @NotNull
     @Column(name = "cook_time")
     private Integer cookTime;
 
+    @NotNull
     @Column(name = "servings")
     private Integer servings;
 
+    @NotNull
     @Column(name = "source")
     private String source;
 
+    @NotNull
     @Column(name = "url")
     private String url;
 
+    @NotNull
     @Column(name = "directions")
     private String directions;
+    
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "dt_hr_insert", updatable=false)
+    private Date dtHrInsert;
+    
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "dt_hr_update")
+    private Date dtHrUpdate;
 
     @Lob
     private Byte[] image;
@@ -75,7 +98,8 @@ public class Recipe implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private List<Ingredient> ingredients;
         
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_notes")
     private Notes notes;
     
     @ManyToMany
@@ -86,6 +110,33 @@ public class Recipe implements Serializable {
     
     //-------------------------------------
 
+    @PrePersist
+    public void setInsertTime(){
+        this.dtHrInsert = new Date();
+        this.dtHrUpdate = new Date();
+    }
+    
+    @PreUpdate
+    public void setUpdateTime(){
+        this.dtHrUpdate = new Date();
+    }
+    
+    public Date getDtHrInsert() {
+        return dtHrInsert;
+    }
+
+    public void setDtHrInsert(Date dtHrInsert) {
+        this.dtHrInsert = dtHrInsert;
+    }
+
+    public Date getDtHrUpdate() {
+        return dtHrUpdate;
+    }
+
+    public void setDtHrUpdate(Date dtHrUpdate) {
+        this.dtHrUpdate = dtHrUpdate;
+    }    
+    
     public Set<Category> getCategories() {
         return categories;
     }
@@ -212,6 +263,7 @@ public class Recipe implements Serializable {
 
     @Override
     public String toString() {
-        return "Recipe{" + "idRecipe=" + idRecipe + ", prepTime=" + prepTime + ", cookTime=" + cookTime + ", servings=" + servings + ", source=" + source + ", url=" + url + ", directions=" + directions + ", image=" + image + ", difficulty=" + difficulty + ", ingredients=" + ingredients + ", notes=" + notes + '}';
+        return "Recipe{" + "idRecipe=" + idRecipe + ", prepTime=" + prepTime + ", cookTime=" + cookTime + ", servings=" + servings + ", source=" + source + ", url=" + url + ", directions=" + directions + ", dtHrInsert=" + dtHrInsert + ", dtHrUpdate=" + dtHrUpdate + ", image=" + image + ", difficulty=" + difficulty + ", ingredients=" + ingredients + ", notes=" + notes + ", categories=" + categories + '}';
     }
+
 }
