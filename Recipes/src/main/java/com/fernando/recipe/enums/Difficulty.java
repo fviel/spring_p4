@@ -20,5 +20,17 @@ import javax.persistence.Table;
 public enum Difficulty {
     EASY, MEDIUM, HARD;
 
+    public static Difficulty getEASY() {
+        return EASY;
+    }
+
+    public static Difficulty getMEDIUM() {
+        return MEDIUM;
+    }
+
+    public static Difficulty getHARD() {
+        return HARD;
+    }
+
     
 }

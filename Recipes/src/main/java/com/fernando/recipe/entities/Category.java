@@ -7,6 +7,7 @@ package com.fernando.recipe.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,15 @@ public class Category implements Serializable {
     private String departmentName;
 
     @ManyToMany(mappedBy = "categories")
-    private List<Recipe> recipes;
+    private Set<Recipe> recipes;
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
 
     public int getIdCategory() {
         return idCategory;
@@ -80,5 +89,12 @@ public class Category implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" + "idCategory=" + idCategory + ", departmentName=" + departmentName + ", recipes=" + recipes + '}';
+    }
+    
+    
 
 }

@@ -40,6 +40,7 @@ public class Ingredient implements Serializable {
     private BigDecimal amount;
     
     @OneToOne
+    @JoinColumn(name = "fk_uom")
     private UnityOfMeasure uom;
     
     @ManyToOne
