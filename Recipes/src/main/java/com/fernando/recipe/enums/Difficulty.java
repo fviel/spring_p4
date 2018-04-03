@@ -5,12 +5,6 @@
  */
 package com.fernando.recipe.enums;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
  *
  * @author Fernando
@@ -18,7 +12,7 @@ import javax.persistence.Table;
 
 
 public enum Difficulty {
-    EASY, MEDIUM, HARD;
+    EASY, MEDIUM, HARD, VERY_HARD;
 
     public static Difficulty getEASY() {
         return EASY;
@@ -32,5 +26,5 @@ public enum Difficulty {
         return HARD;
     }
 
-    
+
 }
