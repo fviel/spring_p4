@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -32,7 +33,7 @@ public class IndexController {
     }
 
     @RequestMapping({"", "/", "/index"})
-    public String getIndexPage() {
+    public String getIndexPage(Model model) {
         String p1 = "Comida brasileira";
         String p2 = "um copinho fervendo";
         try {
@@ -45,6 +46,8 @@ public class IndexController {
         } catch (NoSuchElementException nsee) {
             System.out.println("Elemento não encontrado: " + nsee.getCause());
         }
+        
+        model.addAttribute("categories", categoryRepository.findAll());
 
         return "index";
     }
