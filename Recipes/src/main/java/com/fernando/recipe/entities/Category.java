@@ -34,6 +34,9 @@ public class Category implements Serializable {
 
     @Column(name = "department_name")
     private String departmentName;
+    
+    @Column(name = "description")
+    private String description;
 
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes;
@@ -61,6 +64,15 @@ public class Category implements Serializable {
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
 
     public Category() {
     }
@@ -92,9 +104,6 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        return "Category{" + "idCategory=" + idCategory + ", departmentName=" + departmentName + ", recipes=" + recipes + '}';
+        return "Category{" + "idCategory=" + idCategory + ", departmentName=" + departmentName + ", description=" + description + ", recipes=" + recipes + '}';
     }
-    
-    
-
 }

@@ -31,6 +31,9 @@ public class UnityOfMeasure implements Serializable {
     @Column(name = "uom")
     private String uom;
 
+    @Column(name = "description")
+    private String description;
+     
     public int getIdUom() {
         return idUom;
     }
@@ -52,6 +55,15 @@ public class UnityOfMeasure implements Serializable {
         this.uom = uom;
     }
 
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     public UnityOfMeasure() {
     }    
 
@@ -82,6 +94,8 @@ public class UnityOfMeasure implements Serializable {
 
     @Override
     public String toString() {
-        return "UnityOfMeasure{" + "idUom=" + idUom + ", uom=" + uom + '}';
+        return "UnityOfMeasure{" + "idUom=" + idUom + ", uom=" + uom + ", description=" + description + '}';
     }
+
+
 }
