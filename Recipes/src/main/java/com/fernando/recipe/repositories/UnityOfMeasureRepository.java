@@ -6,6 +6,7 @@
 package com.fernando.recipe.repositories;
 
 import com.fernando.recipe.entities.UnityOfMeasure;
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +14,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author Fernando
  */
 public interface UnityOfMeasureRepository extends CrudRepository<UnityOfMeasure, Integer>{
-    
+    Optional<UnityOfMeasure> findByDescription(String description);
 }
