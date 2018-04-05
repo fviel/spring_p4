@@ -24,6 +24,23 @@
                 <td th:text="${category.description}">24154351531</td>
             </tr>
         </table>
+        
+        <h1 style="color:Red">Lista de Unity of Measure</h1>
+        <br>
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Unity</th>
+                <th scope="col">Description</th>     
+            </tr>
+            <br>
+            
+            <tr th:each="uom : ${uoms}">
+                <td th:text="${uom.idUom}">123</td>
+                <td th:text="${uom.uom}">Spring in Action</td>
+                <td th:text="${uom.description}">24154351531</td>
+            </tr>
+        </table>
 
 
     </body>

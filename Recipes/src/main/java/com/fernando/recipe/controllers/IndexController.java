@@ -48,6 +48,7 @@ public class IndexController {
         }
         
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("uoms", unityOfMeasureRepository.findAll());
 
         return "index";
     }
