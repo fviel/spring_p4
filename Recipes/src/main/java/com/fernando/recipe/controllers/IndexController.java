@@ -9,6 +9,7 @@ import com.fernando.recipe.entities.Category;
 import com.fernando.recipe.entities.UnityOfMeasure;
 import com.fernando.recipe.repositories.CategoryRepository;
 import com.fernando.recipe.repositories.UnityOfMeasureRepository;
+import com.fernando.recipe.services.RecipeService;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,13 @@ public class IndexController {
 
     private CategoryRepository categoryRepository;
     private UnityOfMeasureRepository unityOfMeasureRepository;
+    private RecipeService recipeService;
 
     //faz a injeção das dependencias via construtora
-    public IndexController(CategoryRepository categoryRepository, UnityOfMeasureRepository unityOfMeasureRepository) {
+    public IndexController(CategoryRepository categoryRepository, UnityOfMeasureRepository unityOfMeasureRepository, RecipeService recipeService) {
         this.categoryRepository = categoryRepository;
         this.unityOfMeasureRepository = unityOfMeasureRepository;
+        this.recipeService = recipeService;
     }
 
     @RequestMapping({"", "/", "/index"})
@@ -37,6 +40,7 @@ public class IndexController {
         String p1 = "Comida brasileira";
         String p2 = "um copinho fervendo";
         try {
+            recipeService.createGuacaMoleRecipe();
 
             Optional<Category> categoryOptional = categoryRepository.findByDescription(p1);
             Optional<UnityOfMeasure> unityOfMeasureOptional = unityOfMeasureRepository.findByDescription(p2);

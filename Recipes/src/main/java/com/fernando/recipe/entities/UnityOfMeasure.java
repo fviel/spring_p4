@@ -67,6 +67,13 @@ public class UnityOfMeasure implements Serializable {
     public UnityOfMeasure() {
     }    
 
+    public UnityOfMeasure(String uom, String description) {
+        this.uom = uom;
+        this.description = description;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 5;
