@@ -25,7 +25,7 @@ public class Notes  implements Serializable {
     private static final long serialVersionUID = 37830943408126L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_notes")
     private int idNotes;
 

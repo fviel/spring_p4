@@ -29,7 +29,7 @@ public class Ingredient implements Serializable {
     private static final long serialVersionUID = 3593145423408126L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ingredient")
     private int idIngredient;
     

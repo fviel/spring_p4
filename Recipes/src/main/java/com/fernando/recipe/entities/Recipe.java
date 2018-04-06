@@ -51,7 +51,7 @@ public class Recipe implements Serializable {
 	@Column(name = "id_recipe")
 	private Integer idRecipe;*/
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_recipe")
     private Integer idRecipe;
 
