@@ -24,7 +24,7 @@ public class UnityOfMeasure implements Serializable {
     private static final long serialVersionUID = 3783093145423426L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_uom")
     private int idUom;
     
@@ -71,6 +71,13 @@ public class UnityOfMeasure implements Serializable {
         this.uom = uom;
         this.description = description;
     }
+
+    public UnityOfMeasure(int idUom, String uom, String description) {
+        this.idUom = idUom;
+        this.uom = uom;
+        this.description = description;
+    }
+    
     
     
 
