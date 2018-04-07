@@ -17,12 +17,14 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Fernando
  */
 @Service
+@Transactional
 public class RecipeService {
 
     private CategoryRepository categoryRepository;
