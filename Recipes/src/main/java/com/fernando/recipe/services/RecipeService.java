@@ -10,6 +10,8 @@ import com.fernando.recipe.entities.Recipe;
 import com.fernando.recipe.entities.UnityOfMeasure;
 import com.fernando.recipe.enums.Difficulty;
 import com.fernando.recipe.repositories.CategoryRepository;
+import com.fernando.recipe.repositories.IngredientRepository;
+import com.fernando.recipe.repositories.RecipeRepository;
 import com.fernando.recipe.repositories.UnityOfMeasureRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,11 +27,18 @@ public class RecipeService {
 
     private CategoryRepository categoryRepository;
     private UnityOfMeasureRepository unityOfMeasureRepository;
+    private IngredientRepository ingredientRepository;
+    private RecipeRepository recipeRepository;
 
     //faz a injeção das dependencias via construtora
-    public RecipeService(CategoryRepository categoryRepository, UnityOfMeasureRepository unityOfMeasureRepository) {
+    public RecipeService(CategoryRepository categoryRepository,
+            UnityOfMeasureRepository unityOfMeasureRepository,
+            IngredientRepository ingredientRepository,
+            RecipeRepository recipeRepository) {
         this.categoryRepository = categoryRepository;
         this.unityOfMeasureRepository = unityOfMeasureRepository;
+        this.ingredientRepository = ingredientRepository;
+        this.recipeRepository = recipeRepository;
     }
 
     public void createGuacaMoleRecipe() {
@@ -38,6 +47,8 @@ public class RecipeService {
         UnityOfMeasure csopa = new UnityOfMeasure("Colher de sopa", "Colher pequena de 25ml");
         UnityOfMeasure fatia = new UnityOfMeasure("Fatia", "Fatia de um item");
         UnityOfMeasure punhado = new UnityOfMeasure("Punhado", "Punhado de um item");
+        UnityOfMeasure cmesa = new UnityOfMeasure("Pitada", "Pitada de um item"); //pinch
+        UnityOfMeasure pitada = new UnityOfMeasure("Colher de mesa", "Colher de pau"); //tbspn
 
         unityOfMeasureRepository.save(unid);
         unityOfMeasureRepository.save(ccha);
@@ -61,11 +72,15 @@ public class RecipeService {
         ingr.add(coentro);
         ingr.add(tomate);
         
+        ingredientRepository.saveAll(ingr);        
+        
         Recipe guaca = new Recipe();
         guaca.setDifficulty(Difficulty.MEDIUM);
         guaca.setPrepTime(10);
         guaca.setServings(4);
         guaca.setIngredients(ingr);
+        
+        recipeRepository.save(guaca);
         
     }
 
