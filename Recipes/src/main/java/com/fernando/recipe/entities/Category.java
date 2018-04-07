@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
@@ -34,12 +35,15 @@ public class Category implements Serializable {
 
     @Column(name = "department_name")
     private String departmentName;
-    
+
     @Column(name = "description")
     private String description;
 
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes;
+
+    @Version
+    private Long version;
 
     public Set<Recipe> getRecipes() {
         return recipes;
@@ -72,7 +76,6 @@ public class Category implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
 
     public Category() {
     }

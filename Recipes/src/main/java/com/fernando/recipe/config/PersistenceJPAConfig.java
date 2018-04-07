@@ -48,7 +48,7 @@ public class PersistenceJPAConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/fv?useTimezone=true&serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/fv?useTimezone=true&serverTimezone=UTC&createDatabaseIfNotExist=true");
         dataSource.setUsername("root");
         dataSource.setPassword("1822");
         return dataSource;

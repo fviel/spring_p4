@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
@@ -34,6 +35,9 @@ public class UnityOfMeasure implements Serializable {
     @Column(name = "description")
     private String description;
      
+    @Version
+    private Long version;
+    
     public int getIdUom() {
         return idUom;
     }

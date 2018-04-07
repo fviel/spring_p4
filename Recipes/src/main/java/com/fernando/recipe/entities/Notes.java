@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
@@ -31,6 +32,9 @@ public class Notes  implements Serializable {
 
     @Column(name = "notes")
     private String notes;
+    
+    @Version
+    private Long version;
 
     public int getIdNotes() {
         return idNotes;

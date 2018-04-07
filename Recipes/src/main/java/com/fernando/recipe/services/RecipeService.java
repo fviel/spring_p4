@@ -15,9 +15,11 @@ import com.fernando.recipe.repositories.RecipeRepository;
 import com.fernando.recipe.repositories.UnityOfMeasureRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -94,20 +96,22 @@ public class RecipeService {
         guaca.setSource("internet");
         guaca.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/#recipe");
 
-        unityOfMeasureRepository.save(unid);
+      /*  unityOfMeasureRepository.save(unid);
         unityOfMeasureRepository.save(ccha);
         unityOfMeasureRepository.save(csopa);
-        unityOfMeasureRepository.save(fatia);
+        unityOfMeasureRepository.save(fatia);*/
         //ingredientRepository.saveAll(ingr); //concurrentexception, pois falta transaction
+        for (Ingredient i : ingr) {
+            System.out.println(i);
+        }
 
-        ingredientRepository.save(sal);
+        /* ingredientRepository.save(sal);
         ingredientRepository.save(abacate);
         ingredientRepository.save(sucolimao);
         ingredientRepository.save(cebola);
         ingredientRepository.save(pimenta);
         ingredientRepository.save(coentro);
-        ingredientRepository.save(tomate);
-        
+        ingredientRepository.save(tomate);*/
         recipeRepository.save(guaca);
 
     }

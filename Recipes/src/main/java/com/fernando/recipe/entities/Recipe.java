@@ -33,6 +33,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -108,6 +109,8 @@ public class Recipe implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "id_category"))
     private Set<Category> categories;
     
+    @Version
+    private Long version;
     //-------------------------------------
 
     @PrePersist

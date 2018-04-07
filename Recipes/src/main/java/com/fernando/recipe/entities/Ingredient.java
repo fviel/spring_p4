@@ -18,6 +18,7 @@ import com.fernando.recipe.entities.UnityOfMeasure;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 /**
  *
@@ -48,6 +49,9 @@ public class Ingredient implements Serializable {
     @JoinColumn(name = "fk_recipe")
     private Recipe recipe;
 
+    @Version
+    private Long version;
+    
     public int getIdIngredient() {
         return idIngredient;
     }
