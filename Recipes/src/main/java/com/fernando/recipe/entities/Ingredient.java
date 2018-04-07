@@ -85,6 +85,12 @@ public class Ingredient implements Serializable {
         this.amount = amount;
         this.uom = uom;
     }
+    
+    public Ingredient(String description, BigDecimal amount, UnityOfMeasure uom) {
+        this.description = description;
+        this.amount = amount;
+        this.uom = uom;
+    }
 
     public Ingredient() {
     }

@@ -5,10 +5,12 @@
  */
 package com.fernando.recipe.services;
 
+import com.fernando.recipe.entities.Ingredient;
 import com.fernando.recipe.entities.Recipe;
 import com.fernando.recipe.entities.UnityOfMeasure;
 import com.fernando.recipe.repositories.CategoryRepository;
 import com.fernando.recipe.repositories.UnityOfMeasureRepository;
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -29,15 +31,24 @@ public class RecipeService {
     }
     
     public void createGuacaMoleRecipe(){
-        UnityOfMeasure u1 = new UnityOfMeasure("Unidade","A unidade de um item");
-        UnityOfMeasure u2 = new UnityOfMeasure("Colher de chá","Colher pequena de 10ml");
-        UnityOfMeasure u3 = new UnityOfMeasure("Colher de sopa","Colher pequena de 25ml");
-        UnityOfMeasure u4 = new UnityOfMeasure("Fatia","Fatia de um item");
+        UnityOfMeasure unid = new UnityOfMeasure("Unidade","A unidade de um item");
+        UnityOfMeasure ccha = new UnityOfMeasure("Colher de chá","Colher pequena de 10ml");
+        UnityOfMeasure csopa = new UnityOfMeasure("Colher de sopa","Colher pequena de 25ml");
+        UnityOfMeasure fatia = new UnityOfMeasure("Fatia","Fatia de um item");
         
-        unityOfMeasureRepository.save(u1);
-        unityOfMeasureRepository.save(u2);
-        unityOfMeasureRepository.save(u3);
-        unityOfMeasureRepository.save(u4);
+        unityOfMeasureRepository.save(unid);
+        unityOfMeasureRepository.save(ccha);
+        unityOfMeasureRepository.save(csopa);
+        unityOfMeasureRepository.save(fatia);
+                
+        Ingredient abacate = new Ingredient("Abacate", new BigDecimal(2.0) , unid);
+        Ingredient sal = new Ingredient("Sal", new BigDecimal(0.5), ccha );
+        Ingredient sucolimao = new Ingredient("Suco fresco de limão", new BigDecimal(1.0), csopa );
+        Ingredient cebola = new Ingredient("Cebola", new BigDecimal(2.0), csopa );
+        Ingredient pimenta = new Ingredient("Pimenta sem sementes", new BigDecimal(2.0), unid );
+        //Ingredient  = new Ingredient("Sal", new BigDecimal(0.5), ccha );
+        
+        
     }
     
     public void createSpicyChickenRecipe(){
