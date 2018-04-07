@@ -68,15 +68,15 @@ public class Recipe implements Serializable {
     private Integer servings;
 
     @NotNull
-    @Column(name = "source")
+    @Column(name = "source", length=120)
     private String source;
 
     @NotNull
-    @Column(name = "url")
+    @Column(name = "url", length=120)
     private String url;
 
     @NotNull
-    @Column(name = "directions")
+    @Column(name = "directions", length=4096, columnDefinition = "TEXT")
     private String directions;
     
     @NotNull

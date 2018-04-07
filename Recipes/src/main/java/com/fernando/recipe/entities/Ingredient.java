@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import com.fernando.recipe.entities.UnityOfMeasure;
+import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -39,11 +40,11 @@ public class Ingredient implements Serializable {
     @Column(name = "amount")
     private BigDecimal amount;
     
-    @OneToOne
+    @OneToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "fk_uom")
     private UnityOfMeasure uom;
     
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_recipe")
     private Recipe recipe;
 
@@ -73,6 +74,14 @@ public class Ingredient implements Serializable {
 
     public UnityOfMeasure getUom() {
         return uom;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     public void setUom(UnityOfMeasure uom) {

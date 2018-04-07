@@ -50,10 +50,7 @@ public class RecipeService {
         UnityOfMeasure cmesa = new UnityOfMeasure("Pitada", "Pitada de um item"); //pinch
         UnityOfMeasure pitada = new UnityOfMeasure("Colher de mesa", "Colher de pau"); //tbspn
 
-        unityOfMeasureRepository.save(unid);
-        unityOfMeasureRepository.save(ccha);
-        unityOfMeasureRepository.save(csopa);
-        unityOfMeasureRepository.save(fatia);
+        
 
         Ingredient abacate = new Ingredient("Abacate", new BigDecimal(2.0), unid);
         Ingredient sal = new Ingredient("Sal", new BigDecimal(0.5), ccha);
@@ -70,16 +67,38 @@ public class RecipeService {
         ingr.add(cebola);
         ingr.add(pimenta);
         ingr.add(coentro);
-        ingr.add(tomate);
-        
-        ingredientRepository.saveAll(ingr);        
+        ingr.add(tomate);  
         
         Recipe guaca = new Recipe();
+        for(Ingredient i:ingr){
+           i.setRecipe(guaca);
+        }
         guaca.setDifficulty(Difficulty.MEDIUM);
         guaca.setPrepTime(10);
         guaca.setServings(4);
         guaca.setIngredients(ingr);
+        guaca.setCookTime(0);
+        guaca.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
+"\n" +
+"2 Mash with a fork: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)\n" +
+"\n" +
+"3 Add salt, lime juice, and the rest: Sprinkle with salt and lime (or lemon) juice. The acid in the lime juice will provide some balance to the richness of the avocado and will help delay the avocados from turning brown.\n" +
+"\n" +
+"Add the chopped onion, cilantro, black pepper, and chiles. Chili peppers vary individually in their hotness. So, start with a half of one chili pepper and add to the guacamole to your desired degree of hotness.\n" +
+"\n" +
+"Remember that much of this is done to taste because of the variability in the fresh ingredients. Start with this recipe and adjust to your taste.\n" +
+"\n" +
+"4 Cover with plastic and chill to store: Place plastic wrap on the surface of the guacamole cover it and to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) Refrigerate until ready to serve.\n" +
+"\n" +
+"Chilling tomatoes hurts their flavor, so if you want to add chopped tomato to your guacamole, add it just before serving.");
+        guaca.setSource("internet");
+        guaca.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/#recipe");
         
+        unityOfMeasureRepository.save(unid);
+        unityOfMeasureRepository.save(ccha);
+        unityOfMeasureRepository.save(csopa);
+        unityOfMeasureRepository.save(fatia);
+        ingredientRepository.saveAll(ingr); 
         recipeRepository.save(guaca);
         
     }
