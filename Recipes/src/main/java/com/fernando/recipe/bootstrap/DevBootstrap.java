@@ -20,15 +20,15 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-
 /**
  * DevBootstrap é uma classe apenas para carregar os dados de teste no sistema.
+ *
  * @author Fernando
  */
 @Component //transforma em spring bean
 //ApplicationListener<ContextRefreshedEvent> é um dos eventos padrões do spring, ainda não entendi direito, mas vou ver
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
-    
+
     private CategoryRepository categoryRepository;
     private UnityOfMeasureRepository unityOfMeasureRepository;
     private IngredientRepository ingredientRepository;
@@ -43,18 +43,21 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         this.unityOfMeasureRepository = unityOfMeasureRepository;
         this.ingredientRepository = ingredientRepository;
         this.recipeRepository = recipeRepository;
-    }   
-    
-    
-      @Override
-    public void onApplicationEvent(ContextRefreshedEvent e) {
-       //ainda não entendi bem pq do application listener, não sei o que é, mas estou com sono e vou dormir, depois vejo....
-       initData();
     }
-    
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent e) {
+        //applicationEvent é o evento da aplicação subir
+        initData();
+    }
+
+    private void initData() {
+        createGuacaMoleRecipe();
+    }
+
     /*
     Método de bootstrap para a receita de Guacamole
-    */
+     */
     public void createGuacaMoleRecipe() {
         UnityOfMeasure unid = new UnityOfMeasure("Unidade", "A unidade de um item");
         UnityOfMeasure ccha = new UnityOfMeasure("Colher de chá", "Colher pequena de 10ml");
@@ -80,13 +83,9 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         ingr.add(pimenta);
         ingr.add(coentro);
         ingr.add(tomate);
-        
-        /*for (Ingredient i : ingr) {
-            i.setRecipe(guaca);
-        }*/
 
         Recipe guaca = new Recipe();
-                
+
         guaca.setDifficulty(Difficulty.MEDIUM);
         guaca.setPrepTime(10);
         guaca.setServings(4);
@@ -107,14 +106,10 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
                 + "Chilling tomatoes hurts their flavor, so if you want to add chopped tomato to your guacamole, add it just before serving.");
         guaca.setSource("internet");
         guaca.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/#recipe");
-    
-        for (Ingredient i : ingr) {
-            System.out.println(i);
-        }
+
         recipeRepository.save(guaca);
+
+        System.out.println("BOOTSTRAP DE DADOS PARA DESENV - Receita de guacamole adicionada.");
     }
-    
-    private void initData(){
-        createGuacaMoleRecipe();
-    }
+
 }

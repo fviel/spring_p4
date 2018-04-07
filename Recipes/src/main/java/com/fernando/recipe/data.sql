@@ -1,1 +1,0 @@
-INSERT INTO fv.tb_notes (id_notes, notes, version) VALUES(100, "data.sql", 1);
