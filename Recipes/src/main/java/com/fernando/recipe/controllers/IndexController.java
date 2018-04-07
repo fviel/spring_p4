@@ -40,15 +40,24 @@ public class IndexController {
         String p1 = "Comida brasileira";
         String p2 = "um copinho fervendo";
         try {
-            recipeService.createGuacaMoleRecipe();
-
+        recipeService.createGuacaMoleRecipe();
+        }catch (Exception e){
+            System.out.println("Problema: " + e.getMessage());
+        }
+        
+        try {  
             Optional<Category> categoryOptional = categoryRepository.findByDescription(p1);
             Optional<UnityOfMeasure> unityOfMeasureOptional = unityOfMeasureRepository.findByDescription(p2);
-
-            System.out.println("[" + categoryOptional.get().getIdCategory() + "]Category: " + categoryOptional.get().getDescription());
-            System.out.println("[" + unityOfMeasureOptional.get().getIdUom() + "]Unity of measure: " + unityOfMeasureOptional.get().getDescription());
+            
+            if(categoryOptional.isPresent()) {         
+                System.out.println("[" + categoryOptional.get().getIdCategory() + "]Category: " + categoryOptional.get().getDescription());
+            }
+            if(unityOfMeasureOptional.isPresent()) {         
+                System.out.println("[" + unityOfMeasureOptional.get().getIdUom() + "]Unity of measure: " + unityOfMeasureOptional.get().getDescription());
+            }
         } catch (NoSuchElementException nsee) {
-            System.out.println("Elemento não encontrado: " + nsee.getCause());
+            System.out.println("Elemento não encontrado: " + nsee.getMessage());
+            nsee.printStackTrace();
         }
         
         model.addAttribute("categories", categoryRepository.findAll());
@@ -56,5 +65,4 @@ public class IndexController {
 
         return "index";
     }
-
 }

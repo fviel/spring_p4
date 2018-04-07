@@ -45,6 +45,9 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
+    /*
+    Método de bootstrap para a receita de Guacamole
+    */
     public void createGuacaMoleRecipe() {
         UnityOfMeasure unid = new UnityOfMeasure("Unidade", "A unidade de um item");
         UnityOfMeasure ccha = new UnityOfMeasure("Colher de chá", "Colher pequena de 10ml");
@@ -70,11 +73,13 @@ public class RecipeService {
         ingr.add(pimenta);
         ingr.add(coentro);
         ingr.add(tomate);
+        
+        /*for (Ingredient i : ingr) {
+            i.setRecipe(guaca);
+        }*/
 
         Recipe guaca = new Recipe();
-        for (Ingredient i : ingr) {
-            i.setRecipe(guaca);
-        }
+                
         guaca.setDifficulty(Difficulty.MEDIUM);
         guaca.setPrepTime(10);
         guaca.setServings(4);
@@ -95,25 +100,11 @@ public class RecipeService {
                 + "Chilling tomatoes hurts their flavor, so if you want to add chopped tomato to your guacamole, add it just before serving.");
         guaca.setSource("internet");
         guaca.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/#recipe");
-
-      /*  unityOfMeasureRepository.save(unid);
-        unityOfMeasureRepository.save(ccha);
-        unityOfMeasureRepository.save(csopa);
-        unityOfMeasureRepository.save(fatia);*/
-        //ingredientRepository.saveAll(ingr); //concurrentexception, pois falta transaction
+    
         for (Ingredient i : ingr) {
             System.out.println(i);
         }
-
-        /* ingredientRepository.save(sal);
-        ingredientRepository.save(abacate);
-        ingredientRepository.save(sucolimao);
-        ingredientRepository.save(cebola);
-        ingredientRepository.save(pimenta);
-        ingredientRepository.save(coentro);
-        ingredientRepository.save(tomate);*/
         recipeRepository.save(guaca);
-
     }
 
     public void createSpicyChickenRecipe() {
