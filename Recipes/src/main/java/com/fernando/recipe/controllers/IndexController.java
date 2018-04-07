@@ -40,7 +40,7 @@ public class IndexController {
         String p1 = "Comida brasileira";
         String p2 = "um copinho fervendo";
         try {
-        recipeService.createGuacaMoleRecipe();
+        //recipeService.createGuacaMoleRecipe();
         }catch (Exception e){
             System.out.println("Problema: " + e.getMessage());
         }
