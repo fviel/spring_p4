@@ -84,6 +84,10 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         ingr.add(coentro);
         ingr.add(tomate);
 
+        //pra fazer o save all, precisa usar interable, senão dá o erro de concorrencia!!!!!!!!!!!!!
+//        List<Ingredient> iterable = ingr;        
+//        ingredientRepository.saveAll(iterable);
+                
         Recipe guaca = new Recipe();
 
         guaca.setDifficulty(Difficulty.MEDIUM);
