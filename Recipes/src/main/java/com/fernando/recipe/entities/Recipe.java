@@ -245,6 +245,11 @@ public class Recipe implements Serializable {
 
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+        
+        //autoseta que cada ingrediente pertence a recipe:
+        for(Ingredient i:ingredients){
+            i.setRecipe(this);
+        }
     }
 
     public Notes getNotes() {
