@@ -90,6 +90,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
                 
         Recipe guaca = new Recipe();
 
+        guaca.setTitle("Guacamole");
         guaca.setDifficulty(Difficulty.MEDIUM);
         guaca.setPrepTime(10);
         guaca.setServings(4);

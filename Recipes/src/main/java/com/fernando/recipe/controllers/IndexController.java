@@ -39,12 +39,7 @@ public class IndexController {
     public String getIndexPage(Model model) {
         String p1 = "Comida brasileira";
         String p2 = "um copinho fervendo";
-        try {
-        //recipeService.createGuacaMoleRecipe();
-        }catch (Exception e){
-            System.out.println("Problema: " + e.getMessage());
-        }
-        
+             
         try {  
             Optional<Category> categoryOptional = categoryRepository.findByDescription(p1);
             Optional<UnityOfMeasure> unityOfMeasureOptional = unityOfMeasureRepository.findByDescription(p2);
@@ -59,7 +54,9 @@ public class IndexController {
             System.out.println("Elemento não encontrado: " + nsee.getMessage());
             nsee.printStackTrace();
         }
-        
+        String title = "guacao";
+        model.addAttribute("recipeTitle", title);
+        model.addAttribute("recipePrepTime", 15);
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("uoms", unityOfMeasureRepository.findAll());
 

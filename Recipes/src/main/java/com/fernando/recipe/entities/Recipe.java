@@ -55,6 +55,9 @@ public class Recipe implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_recipe")
     private Integer idRecipe;
+    
+    @Column(name="title")
+    private String title;
 
     @NotNull
     @Column(name = "prep_time")
@@ -123,6 +126,22 @@ public class Recipe implements Serializable {
     public void setUpdateTime(){
         this.dtHrUpdate = new Date();
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }    
     
     public Date getDtHrInsert() {
         return dtHrInsert;
@@ -266,7 +285,6 @@ public class Recipe implements Serializable {
 
     @Override
     public String toString() {
-        return "Recipe{" + "idRecipe=" + idRecipe + ", prepTime=" + prepTime + ", cookTime=" + cookTime + ", servings=" + servings + ", source=" + source + ", url=" + url + ", directions=" + directions + ", dtHrInsert=" + dtHrInsert + ", dtHrUpdate=" + dtHrUpdate + ", image=" + image + ", difficulty=" + difficulty + ", ingredients=" + ingredients + ", notes=" + notes + ", categories=" + categories + '}';
+        return "Recipe{" + "idRecipe=" + idRecipe + ", title=" + title + ", prepTime=" + prepTime + ", cookTime=" + cookTime + ", servings=" + servings + ", source=" + source + ", url=" + url + ", directions=" + directions + ", dtHrInsert=" + dtHrInsert + ", dtHrUpdate=" + dtHrUpdate + ", image=" + image + ", difficulty=" + difficulty + ", ingredients=" + ingredients + ", notes=" + notes + ", categories=" + categories + ", version=" + version + '}';
     }
-
 }
